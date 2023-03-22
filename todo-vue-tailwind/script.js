@@ -3,12 +3,14 @@ const getlist =
     ? []
     : JSON.parse(localStorage.getItem("todos"));
 const leftItem = getlist.filter((data) => data.status != true).length;
-var app = new Vue({
-  el: "#todoApp",
-  data: {
-    todos: getlist,
-    newList: "",
-    listUncompleteCount: leftItem,
+const { createApp } = Vue;
+createApp({
+  data() {
+    return {
+      todos: getlist,
+      newList: "",
+      listUncompleteCount: leftItem,
+    };
   },
   methods: {
     addList() {
@@ -70,10 +72,10 @@ var app = new Vue({
         JSON.parse(localStorage.getItem("todos")) == null
           ? []
           : JSON.parse(localStorage.getItem("todos"));
-      if (el.innerText == "Check All") {
-        this.todos.map((data) => (data.status = true));
+      if (el.target.innerText == "Check All") {
+        this.todos.filter((data) => (data.status = true));
       } else {
-        this.todos.map((data) => (data.status = false));
+        this.todos.filter((data) => (data.status = false));
       }
       this.updateLocalStorage();
       this.listUncompleteCount = this.todos.filter(
@@ -88,7 +90,7 @@ var app = new Vue({
       ).length;
     },
     updateList(el) {
-      if (el.value.trim() == "") {
+      if (el.target.value.trim() == "") {
         this.todos =
           JSON.parse(localStorage.getItem("todos")) == null
             ? []
@@ -101,4 +103,4 @@ var app = new Vue({
       this.$nextTick(() => this.$refs["editFocus"][index].focus());
     },
   },
-});
+}).mount("#todoApp");

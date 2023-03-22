@@ -79,8 +79,8 @@
               v-model="todo.text"
               class="w-[300px] p-2.5 border-1 border-neutral-100"
               v-show="todo.showEditingbox == true"
-              v-on:blur="todo.showEditingbox = false;updateList(event.target)"
-              @keyup.enter="todo.showEditingbox = false;updateList(event.target)"
+              v-on:blur="todo.showEditingbox = false;updateList($event)"
+              @keyup.enter="todo.showEditingbox = false;updateList($event)"
             />
             <button
               @click="deleteList(index)"
@@ -99,7 +99,7 @@
             id="checkAll"
             class="flex-1 border border-gray-200 px-8 py-2 mr-4"
             v-text="listUncompleteCount==0?'Uncheck All':'Check All'"
-            @click="checkAll(event.target)"
+            @click="checkAll($event)"
           >
             Check All
           </button>
@@ -115,8 +115,8 @@
       </div>
     </div>
 
-    <!-- production link -->
-    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- vue-3 -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
