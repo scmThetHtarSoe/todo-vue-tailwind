@@ -98,7 +98,7 @@
             type="button"
             id="checkAll"
             class="flex-1 border border-gray-200 px-8 py-2 mr-4"
-            v-text="listUncompleteCount==0?'Uncheck All':'Check All'"
+            v-text="listUncompleteCount==0 && todos.length>0?'Uncheck All':'Check All'"
             @click="checkAll($event)"
           >
             Check All
